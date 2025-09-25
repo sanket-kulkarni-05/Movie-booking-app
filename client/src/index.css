@@ -17,3 +17,16 @@ body{
   color: #fff;
   background-color: #000;
 }
+.no-scrollbar{
+  scrollbar-width: none;
+}
+
+/* Remove baseline gap under videos (prevents thin black line under trailers) */
+video{
+  display: block;
+}
+
+/* ReactPlayer uses an iframe for YouTube; ensure it has no baseline gap */
+iframe{
+  display: block;
+}

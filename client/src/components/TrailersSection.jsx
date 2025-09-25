@@ -4,17 +4,30 @@ import ReactPlayer from 'react-player'
 import BlurCircle from './BlurCircle'
 
 const TrailersSection = () => {
-    const [currentTrailer, setcurrentTrailer] = useState(dummyTrailers[0])
-  return (
-    <div className='px-6 md:px-16 lg:px-24 xl:px-44 py-20 overflow-hidden'>
-        <p className='text-gray-300 font-medium text-lg max-w-[960px] mx-auto'>Trailers</p>
+    const [currentTrailer, setCurrentTrailer] = useState(dummyTrailers[0])
+    const isPlayable = typeof ReactPlayer.canPlay === 'function' 
+        ? ReactPlayer.canPlay(currentTrailer?.videoUrl)
+        : Boolean(currentTrailer?.videoUrl)
 
-        <div className='relative mt-6'>
-            <BlurCircle top='-100px' right='-100px' />
-            <ReactPlayer url={currentTrailer.videoUrl} controls={false} className='mx-auto max-w-full' width='960px' height='540px' />
+    if(!isPlayable){
+        return null
+    }
+
+    return (
+        <div className='px-6 md:px-16 lg:px-24 xl:px-44 py-20 overflow-hidden'>
+            <div className='relative leading-none'>
+                <BlurCircle top='-100px' right='-100px' />
+                <ReactPlayer 
+                    url={currentTrailer.videoUrl} 
+                    controls={true}
+                    light={currentTrailer.image}
+                    className='mx-auto max-w-full' 
+                    width='960px' 
+                    height='540px' 
+                />
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default TrailersSection
