@@ -4,7 +4,7 @@ import { dummyDashboardData } from '../../assets/assets';
 import Loading from '../../components/Loading';
 import BlurCircle from '../../components/BlurCircle';
 import dateFormat from '../../lib/dateFormat';
-import { StarIcon } from '@heroicons/react/24/solid';
+
 const Dashboard = () => {
 
     const currency = import.meta.env.VITE_CURRENCY
